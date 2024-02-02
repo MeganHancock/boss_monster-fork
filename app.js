@@ -22,6 +22,7 @@ const boss = {
     goldReward: '💛',
     defeats: '',
 }
+
 let rewardsCollected = ''
 
 function attackBoss() {
