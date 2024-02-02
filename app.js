@@ -10,16 +10,19 @@ const heroes = [
         type: 'elf',
         damage: 10,
         health: 50
-    }
-]
+    }]
+
+
 
 const boss = {
     health: 100,
     maxHealth: 100,
     damage: 5,
     level: 1,
-    goldReward: '🌞'
+    goldReward: '💛',
+    defeats: '',
 }
+let rewardsCollected = ''
 
 function attackBoss() {
     console.log('test')
@@ -27,10 +30,14 @@ function attackBoss() {
     heroes.forEach(hero => combinedAttackDmg += hero.damage)
     boss.health -= combinedAttackDmg
     if (boss.health <= 0) {
+        rewardsCollected += boss.goldReward
         boss.maxHealth += 10
         boss.health = 100
         boss.level++
-        boss.goldReward += '🌞'
+        boss.goldReward += '💛'
+        boss.defeats++
+
+        window.alert('The Boss has respawned even stronger!')
     }
     console.log('boss health', boss.health)
     console.log('boss max health', boss.maxHealth)
@@ -38,6 +45,7 @@ function attackBoss() {
     // console.log(combinedAttackDmg)
     drawBoss()
     drawHeros()
+    drawMonstersDefeated()
 
 }
 function bossFightBack() {
@@ -60,10 +68,10 @@ function bossFightBack() {
 }
 
 function healHero(heroName) {
-    console.log(heroName)
     const healedHero = heroes.find(hero => hero.name == heroName)
-    healedHero.health++
+    healedHero.health += 10
     drawHeros()
+
 }
 
 
@@ -85,11 +93,20 @@ function drawHeros() {
 
 }
 
+function drawMonstersDefeated() {
+    document.getElementById('amountBossMonstersDefeated').innerText = ` ` + boss.defeats
+    document.getElementById('rewardsEarned').innerText = rewardsCollected
+}
+
 function drawBoss() {
     const bossElement = document.getElementById('bossStats')
     bossElement.innerText = `HP: ${boss.maxHealth} | Reward: ${boss.goldReward} | Level: ${boss.level}`
 }
 
+function reset() {
+    location.reload()
+}
+
 drawBoss()
 drawHeros()
-setInterval(bossFightBack, 500)
+setInterval(bossFightBack, 5000)

@@ -10,52 +10,58 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-    <section class="container">
-        <div class="row">
-            <div id="dwarf" class="col-4">
-                <p>
-                    Slate Slabrock <span class="fs-1">🧙‍♂️</span>
-                </p>
-                <p class="stats">
-                    HP
-                </p>
-                <button type="button" onclick="healHero('Slate Slabrock')">Heal</button>
-            </div>
-            <div id="elf" class="col-4">
-                <p>
-                    Flint Ironstack <span class="fs-1">🧝</span>
-                </p>
-                <p class="stats">
-                    HP
-                </p>
-                <button type="button" onclick="healHero('Flint Ironstag')">Heal</button>
-            </div>
+<body class="text-center fw-bold">
 
-        </div>
+    <header class="m-5">
 
-        <div class="row">
+        <h1 class="display-1 fw-bold">Boss Battle</h1>
 
-            <div id="boss" class="col-6">
-                <p>
-                    boss <span onclick="attackBoss()" class="display-1">🦟</span>
-                </p>
-                <p id="bossStats" class="stats">
-                    HP
-                </p>
+    </header>
+
+    <main>
+
+        <section class="container">
+            <div class="row justify-content-evenly">
+
+                <div id="dwarf" class="col-4 hero-card">
+                    <p>Slate Slabrock <span class="fs-1">🧙‍♂️</span></p>
+                    <p class="stats">HP</p>
+                    <button type="button" class="m-3 btn btn-success" onclick="healHero('Slate Slabrock')">Heal</button>
+                </div>
+
+                <div id="elf" class="col-4 hero-card">
+                    <p>Flint Ironstack <span class="fs-1">🧝</span></p>
+                    <p class="stats"></p>
+                    <button type="button" class="m-3 btn btn-success" onclick="healHero('Flint Ironstag')">Heal</button>
+                </div>
 
             </div>
+            <div class="row justify-content-center m-5 align-items-center ">
+                <div class="col-6 hero-card">Rewards Earned: <span id="rewardsEarned"></span></div>
+            </div>
 
-        </div>
-        <div class="row">
-            <div class="col-4">
+            <div class="row justify-content-center m-5">
+
+                <div id="boss" class="col-6 boss-card">
+                    <p>Boss <span onclick="attackBoss()" class="display-1">💀</span></p>
+                    <p id="bossStats" class="stats"></p>
+
+                </div>
 
             </div>
-            <div class="col-2">
+            <div class="row justify-content-center align-items-center">
 
+                <div class="col-6 hero-card pb-3">Boss Monsters Defeated:<span class="fs-1"
+                        id="amountBossMonstersDefeated"></span></div>
+                <div class="col-7"><button id="reset" type="button" class="btn btn-warning" onclick="reset()">RESET
+                        GAME</button>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+    </main>
+
+    <footer></footer>
 
     <script src="app.js"></script>
 </body>
