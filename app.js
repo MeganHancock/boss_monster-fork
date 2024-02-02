@@ -50,9 +50,6 @@ function attackBoss() {
 
 }
 function bossFightBack() {
-
-
-
     heroes.forEach(hero => {
         hero.health -= boss.damage
         if (hero.health <= 0) {
@@ -68,13 +65,26 @@ function bossFightBack() {
     drawHeros()
 }
 
+// function healHero(heroName) {
+//     const healedHero = heroes.find(hero => hero.name == heroName)
+//     healedHero.health += 10
+//     drawHeros()
+// }
+
 function healHero(heroName) {
-    const healedHero = heroes.find(hero => hero.name == heroName)
-    healedHero.health += 10
-    drawHeros()
+    if (rewardsCollected.length > 0) {
+        const healedHero = heroes.find(hero => hero.name == heroName)
+        healedHero.health += 10
+        rewardsCollected.splice(0)
+        drawHeros()
+        document.getElementById('rewardsEarned').innerText = rewardsCollected
+    } else {
+        window.alert('You do not have enough rewards to buy health!')
+    }
 
 }
-
+// NOTE in function healHero, I want to remove the first item in the rewardsCollected array, 
+// IF there are any items in the array. Else, window.alert
 
 // function drawBoss() {
 //     const bossIdElement = document.getElementById('boss')
